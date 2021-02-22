@@ -14,4 +14,5 @@ public class JobResponse {
     private List<StageResponse> stages;
     private UserSummary createdBy;
     private Instant createdAt;
+    private Instant updatedAt;
 }

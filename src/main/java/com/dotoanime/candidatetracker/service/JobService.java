@@ -40,31 +40,31 @@ public class JobService {
 
     private static final Logger logger = LoggerFactory.getLogger(JobService.class);
 
-    public PagedResponse<JobResponse> getAllJobs(UserPrincipal currentUser, int page, int size) {
-        validatePageNumberAndSize(page, size);
-
-        // Retrieve Jobs
-        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
-        Page<Job> jobs = jobRepository.findAll(pageable);
-
-        if(jobs.getNumberOfElements() == 0) {
-            return new PagedResponse<>(Collections.emptyList(), jobs.getNumber(),
-                    jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
-        }
-
-        // Map Jobs to JobResponses containing vote counts and job creator details
-        List<Long> jobIds = jobs.map(Job::getId).getContent();
-        Map<Long, User> creatorMap = getJobCreatorMap(jobs.getContent());
-
-        List<JobResponse> jobRespons = jobs.map(job -> {
-            return ModelMapper.mapJobToJobResponse(job,
-                    creatorMap.get(job.getCreatedBy())
-            );
-        }).getContent();
-
-        return new PagedResponse<>(jobRespons, jobs.getNumber(),
-                jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
-    }
+//    public PagedResponse<JobResponse> getAllJobs(UserPrincipal currentUser, int page, int size) {
+//        validatePageNumberAndSize(page, size);
+//
+//        // Retrieve Jobs
+//        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+//        Page<Job> jobs = jobRepository.findAll(pageable);
+//
+//        if(jobs.getNumberOfElements() == 0) {
+//            return new PagedResponse<>(Collections.emptyList(), jobs.getNumber(),
+//                    jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
+//        }
+//
+//        // Map Jobs to JobResponses containing vote counts and job creator details
+//        List<Long> jobIds = jobs.map(Job::getId).getContent();
+//        Map<Long, User> creatorMap = getJobCreatorMap(jobs.getContent());
+//
+//        List<JobResponse> jobRespons = jobs.map(job -> {
+//            return ModelMapper.mapJobToJobResponse(job,
+//                    creatorMap.get(job.getCreatedBy())
+//            );
+//        }).getContent();
+//
+//        return new PagedResponse<>(jobRespons, jobs.getNumber(),
+//                jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
+//    }
 
     public PagedResponse<JobResponse> getMyJobs(UserPrincipal currentUser, int page, int size) {
         validatePageNumberAndSize(page, size);
@@ -94,33 +94,33 @@ public class JobService {
                 jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
     }
 
-    public PagedResponse<JobResponse> getJobsCreatedBy(String username, UserPrincipal currentUser, int page, int size) {
-        validatePageNumberAndSize(page, size);
-
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
-
-        // Retrieve all jobs created by the given username
-        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
-        Page<Job> jobs = jobRepository.findByCreatedBy(user.getId(), pageable);
-
-        if (jobs.getNumberOfElements() == 0) {
-            return new PagedResponse<>(Collections.emptyList(), jobs.getNumber(),
-                    jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
-        }
-
-        // Map Jobs to JobResponses containing vote counts and job creator details
-        List<Long> jobIds = jobs.map(Job::getId).getContent();
-
-        List<JobResponse> jobRespons = jobs.map(job -> {
-            return ModelMapper.mapJobToJobResponse(job,
-                    user
-            );
-        }).getContent();
-
-        return new PagedResponse<>(jobRespons, jobs.getNumber(),
-                jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
-    }
+//    public PagedResponse<JobResponse> getJobsCreatedBy(String username, UserPrincipal currentUser, int page, int size) {
+//        validatePageNumberAndSize(page, size);
+//
+//        User user = userRepository.findByUsername(username)
+//                .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
+//
+//        // Retrieve all jobs created by the given username
+//        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+//        Page<Job> jobs = jobRepository.findByCreatedBy(user.getId(), pageable);
+//
+//        if (jobs.getNumberOfElements() == 0) {
+//            return new PagedResponse<>(Collections.emptyList(), jobs.getNumber(),
+//                    jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
+//        }
+//
+//        // Map Jobs to JobResponses containing vote counts and job creator details
+//        List<Long> jobIds = jobs.map(Job::getId).getContent();
+//
+//        List<JobResponse> jobRespons = jobs.map(job -> {
+//            return ModelMapper.mapJobToJobResponse(job,
+//                    user
+//            );
+//        }).getContent();
+//
+//        return new PagedResponse<>(jobRespons, jobs.getNumber(),
+//                jobs.getSize(), jobs.getTotalElements(), jobs.getTotalPages(), jobs.isLast());
+//    }
 
     public Job createJob(JobRequest jobRequest) {
         Job job = new Job();

@@ -1,10 +1,14 @@
 package com.dotoanime.candidatetracker.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.Instant;
 import java.util.Objects;
 
 @Data
@@ -24,6 +28,9 @@ public class Stage {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "job_id", nullable = false)
     private Job job;
+
+    @CreatedDate
+    private Instant createdAt = Instant.now();
 
     public Stage() {
 

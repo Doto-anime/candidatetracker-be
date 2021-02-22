@@ -18,12 +18,14 @@ public class ModelMapper {
         jobResponse.setCompanyName(job.getCompanyName());
         jobResponse.setPosition(job.getPosition());
         jobResponse.setCreatedAt(job.getCreatedAt());
+        jobResponse.setUpdatedAt(job.getUpdatedAt());
 
         List<StageResponse> stageRespons = job.getStages().stream().map(stage -> {
             StageResponse stageResponse = new StageResponse();
             stageResponse.setId(stage.getId());
             stageResponse.setName(stage.getName());
             stageResponse.setNote(stage.getNote());
+            stageResponse.setCreatedAt(stage.getCreatedAt());
 
             return stageResponse;
         }).collect(Collectors.toList());

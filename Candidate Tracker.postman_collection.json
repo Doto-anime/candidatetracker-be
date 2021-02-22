@@ -1,0 +1,903 @@
+{
+	"info": {
+		"_postman_id": "3951cfe1-3281-4525-8af9-fe2a00697dc6",
+		"name": "Candidate Tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWTTRACKER\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"akunuser3\", \r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{link}}/api/auth/signin",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"akunuser1\", \r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/auth/signin",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Feb 2021 22:34:38 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"akunuser1\",\n    \"name\": \"zaira aji\",\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjEzOTQ2ODc4LCJleHAiOjE2MTQ1NTE2Nzh9.BM8gOko4qGODkTzmUpD2nnUuN6hJJUBfWxSxOhOn9RZDKNa1HLH6sZGvf3U7y0OPU0oBU1UqRqAE5dMXny587w\",\n    \"tokenType\": \"Bearer\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWTTRACKER\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"hasan muhammad\", \r\n    \"username\": \"akunuser3\", \r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{link}}/api/auth/signup",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"zaira aji\", \r\n    \"username\": \"akunuser1\", \r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/auth/signup",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/users/akunuser1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Feb 2021 22:34:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"akunuser1\",\n    \"name\": \"zaira aji\",\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjEzOTQ2ODQ3LCJleHAiOjE2MTQ1NTE2NDd9.oBbRKy85bMr6B0v4ED-5lwJPoEHtWrnGuM_RhGd0wlhuuSv6IQOZQmxiNJEdYY4BDLBcKrWniHftIMRueI1gZg\",\n    \"tokenType\": \"Bearer\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Job",
+			"item": [
+				{
+					"name": "Create Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\": \"Bidirectional Ltd\",\r\n    \"position\": \"Marketing staff\",\r\n    \"stages\": [\r\n        {\r\n            \"name\": \"CV screening\",\r\n            \"note\": \"fast feedback\"\r\n        },\r\n        {\r\n            \"name\": \"HR interview\",\r\n            \"note\": \"Had a great conversation\"\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "{{link}}/api/jobs",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"jobs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"companyName\": \"Illusion Ltd.\",\r\n    \"position\": \"Back-end Developer\",\r\n    \"stages\": [\r\n        {\r\n            \"name\": \"CV Screening\",\r\n            \"note\": \"Fast feedback\"\r\n        },\r\n        {\r\n            \"name\": \"Coding test\",\r\n            \"note\": \"too difficult\"\r\n        }\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/jobs/1"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Feb 2021 23:13:28 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Job Created Successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get job by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/api/jobs/:id",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get job by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/jobs/:id",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 Feb 2021 03:34:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 10,\n    \"companyName\": \"Bidirectional Ltd\",\n    \"position\": \"Marketing staff\",\n    \"stages\": [\n        {\n            \"id\": 18,\n            \"name\": \"CV screening\",\n            \"note\": \"fast feedback\",\n            \"createdAt\": \"2021-02-22T03:34:09Z\"\n        },\n        {\n            \"id\": 19,\n            \"name\": \"HR interview\",\n            \"note\": \"Had a great conversation\",\n            \"createdAt\": \"2021-02-22T03:34:09Z\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 3,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-22T03:34:09Z\",\n    \"updatedAt\": \"2021-02-22T03:34:09Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Add stage",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"User Interview\",\r\n    \"note\": \"Had a decent conversation\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{link}}/api/jobs/:id/stages",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								":id",
+								"stages"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get my Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/api/users/jobs",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"jobs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get my Jobs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/users/jobs",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"jobs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 Feb 2021 00:13:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"companyName\": \"Illusion Ltd.\",\n            \"position\": \"Back-end Developer\",\n            \"stages\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"CV Screening\",\n                    \"note\": \"Fast feedback\"\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"Coding test\",\n                    \"note\": \"too difficult\"\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser1\",\n                \"name\": \"zaira aji\"\n            },\n            \"createdAt\": \"2021-02-21T23:13:29Z\"\n        }\n    ],\n    \"page\": 0,\n    \"size\": 30,\n    \"totalElements\": 1,\n    \"totalPages\": 1,\n    \"last\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Check username availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{link}}/api/users/checkUsername?username=ajibaru",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"checkUsername"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "ajibaru"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Check username availability",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{link}}/api/users/checkUsername?username=ajibaru",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"checkUsername"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "ajibaru"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 Feb 2021 00:38:57 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"available\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "User profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/api/users/profile",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/users/profile",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 22 Feb 2021 00:41:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"username\": \"akunuser1\",\n    \"name\": \"zaira aji\",\n    \"createdAt\": \"2021-02-21T23:13:23Z\",\n    \"jobCount\": 1\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
