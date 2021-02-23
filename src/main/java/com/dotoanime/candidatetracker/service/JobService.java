@@ -4,9 +4,7 @@ import com.dotoanime.candidatetracker.exception.BadRequestException;
 import com.dotoanime.candidatetracker.exception.ResourceNotFoundException;
 import com.dotoanime.candidatetracker.exception.UnauthorizedException;
 import com.dotoanime.candidatetracker.model.*;
-import com.dotoanime.candidatetracker.payload.PagedResponse;
-import com.dotoanime.candidatetracker.payload.JobRequest;
-import com.dotoanime.candidatetracker.payload.JobResponse;
+import com.dotoanime.candidatetracker.payload.*;
 import com.dotoanime.candidatetracker.repository.JobRepository;
 import com.dotoanime.candidatetracker.repository.UserRepository;
 import com.dotoanime.candidatetracker.security.UserPrincipal;
@@ -126,10 +124,13 @@ public class JobService {
         Job job = new Job();
         job.setCompanyName(jobRequest.getCompanyName());
         job.setPosition(jobRequest.getPosition());
+        job.setDescription(jobRequest.getDescription());
 
-        jobRequest.getStages().forEach(stageRequest -> {
-            job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote()));
-        });
+        if (!(jobRequest.getStages() == null)){
+            jobRequest.getStages().forEach(stageRequest -> {
+                job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote()));
+            });
+        }
 
         return jobRepository.save(job);
     }
@@ -147,6 +148,23 @@ public class JobService {
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", job.getCreatedBy()));
 
         return ModelMapper.mapJobToJobResponse(job, creator);
+    }
+
+    public JobResponse addStage(Long jobId, StageRequest stageRequest, UserPrincipal currentUser) {
+        Job job = jobRepository.findById(jobId).orElseThrow(
+                () -> new ResourceNotFoundException("Job", "id", jobId));
+        if (!job.getCreatedBy().equals(currentUser.getId())){
+            throw new UnauthorizedException("You don't have access to this page");
+        }
+
+        job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote()));
+        Job jobReturn = jobRepository.save(job);
+
+        // Retrieve job creator details
+        User creator = userRepository.findById(job.getCreatedBy())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", job.getCreatedBy()));
+
+        return ModelMapper.mapJobToJobResponse(jobReturn, creator);
     }
 
     private void validatePageNumberAndSize(int page, int size) {

@@ -12,4 +12,6 @@ public class StageRequest {
 
     @NotBlank
     private String note;
+
+//    private String stageStatus
 }

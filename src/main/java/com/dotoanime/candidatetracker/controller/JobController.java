@@ -61,12 +61,12 @@ public class JobController {
         return jobService.getJobById(jobId, currentUser);
     }
 
-//    @PostMapping("/{jobId}/stage")
-//    @PreAuthorize("hasRole('USER')")
-//    public JobResponse addStage(@CurrentUser UserPrincipal currentUser,
-//                                @PathVariable Long jobId,
-//                                @Valid @RequestBody VoteRequest voteRequest) {
-//        return jobService.castVoteAndGetUpdatedJob(jobId, voteRequest, currentUser);
-//    }
+    @PostMapping("/{jobId}/stages")
+    @PreAuthorize("hasRole('USER')")
+    public JobResponse addStage(@CurrentUser UserPrincipal currentUser,
+                                @PathVariable Long jobId,
+                                @Valid @RequestBody StageRequest stageRequest) {
+        return jobService.addStage(jobId, stageRequest, currentUser);
+    }
 
 }

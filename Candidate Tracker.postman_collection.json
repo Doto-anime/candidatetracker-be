@@ -152,7 +152,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"hasan muhammad\", \r\n    \"username\": \"akunuser3\", \r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"name\": \"aziz ilham\", \r\n    \"username\": \"akunuser2\", \r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -287,7 +287,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"companyName\": \"Bidirectional Ltd\",\r\n    \"position\": \"Marketing staff\",\r\n    \"stages\": [\r\n        {\r\n            \"name\": \"CV screening\",\r\n            \"note\": \"fast feedback\"\r\n        },\r\n        {\r\n            \"name\": \"HR interview\",\r\n            \"note\": \"Had a great conversation\"\r\n        }\r\n    ]\r\n}"
+							"raw": "{\r\n    \"companyName\": \"Machina Corp.\",\r\n    \"position\": \"Marketing Staff\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\"\r\n}"
 						},
 						"url": {
 							"raw": "{{link}}/api/jobs",
@@ -302,7 +302,7 @@
 					},
 					"response": [
 						{
-							"name": "Create Job",
+							"name": "Create Job With No Stages",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -319,7 +319,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"companyName\": \"Illusion Ltd.\",\r\n    \"position\": \"Back-end Developer\",\r\n    \"stages\": [\r\n        {\r\n            \"name\": \"CV Screening\",\r\n            \"note\": \"Fast feedback\"\r\n        },\r\n        {\r\n            \"name\": \"Coding test\",\r\n            \"note\": \"too difficult\"\r\n        }\r\n    ]\r\n}"
+									"raw": "{\r\n    \"companyName\": \"Machina Corp.\",\r\n    \"position\": \"Marketing Staff\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\"\r\n}"
 								},
 								"url": {
 									"raw": "{{link}}/api/jobs",
@@ -350,7 +350,7 @@
 								},
 								{
 									"key": "Location",
-									"value": "http://localhost:8080/api/jobs/1"
+									"value": "http://localhost:8080/api/jobs/11"
 								},
 								{
 									"key": "X-Content-Type-Options",
@@ -382,7 +382,102 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 21 Feb 2021 23:13:28 GMT"
+									"value": "Tue, 23 Feb 2021 12:14:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Job Created Successfully\"\n}"
+						},
+						{
+							"name": "Create Job With Stages",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"companyName\": \"Illusion Ltd.\",\r\n    \"position\": \"Back-end Developer\",\r\n    \"description\": \"IT Consultant company based in Jakarta. Applied for job 3 days ago\",\r\n    \"stages\": [\r\n        {\r\n            \"name\": \"CV Screening\",\r\n            \"note\": \"Fast feedback\"\r\n        },\r\n        {\r\n            \"name\": \"Coding test\",\r\n            \"note\": \"too difficult\"\r\n        }\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Location",
+									"value": "http://localhost:8080/api/jobs/10"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 23 Feb 2021 12:13:10 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -503,7 +598,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 22 Feb 2021 03:34:16 GMT"
+									"value": "Tue, 23 Feb 2021 12:15:18 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -515,7 +610,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 10,\n    \"companyName\": \"Bidirectional Ltd\",\n    \"position\": \"Marketing staff\",\n    \"stages\": [\n        {\n            \"id\": 18,\n            \"name\": \"CV screening\",\n            \"note\": \"fast feedback\",\n            \"createdAt\": \"2021-02-22T03:34:09Z\"\n        },\n        {\n            \"id\": 19,\n            \"name\": \"HR interview\",\n            \"note\": \"Had a great conversation\",\n            \"createdAt\": \"2021-02-22T03:34:09Z\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 3,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-22T03:34:09Z\",\n    \"updatedAt\": \"2021-02-22T03:34:09Z\"\n}"
+							"body": "{\n    \"id\": 10,\n    \"companyName\": \"Illusion Ltd.\",\n    \"position\": \"Back-end Developer\",\n    \"description\": \"IT Consultant company based in Jakarta. Applied for job 3 days ago\",\n    \"stages\": [\n        {\n            \"id\": 8,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"createdAt\": \"2021-02-23T12:13:10.891Z\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"createdAt\": \"2021-02-23T12:13:10.891Z\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-23T12:13:10.892Z\",\n    \"updatedAt\": \"2021-02-23T12:13:10.892Z\"\n}"
 						}
 					]
 				},
@@ -558,12 +653,117 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "1"
 								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add stage",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"User Interview\",\r\n    \"note\": \"Had a decent conversation\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs/:id/stages",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id",
+										"stages"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 23 Feb 2021 11:14:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"companyName\": \"Bidirectional Ltd\",\n    \"position\": \"Marketing staff\",\n    \"stages\": [\n        {\n            \"id\": 1,\n            \"name\": \"CV screening\",\n            \"note\": \"fast feedback\",\n            \"createdAt\": \"2021-02-23T11:13:06.771Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"HR interview\",\n            \"note\": \"Had a great conversation\",\n            \"createdAt\": \"2021-02-23T11:13:06.771Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"User Interview\",\n            \"note\": \"Had a decent conversation\",\n            \"createdAt\": \"2021-02-23T11:14:41.883083900Z\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-23T11:13:06.812Z\",\n    \"updatedAt\": \"2021-02-23T11:13:06.812Z\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -663,7 +863,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 22 Feb 2021 03:58:19 GMT"
+									"value": "Tue, 23 Feb 2021 12:19:51 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -675,7 +875,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"content\": [\n        {\n            \"id\": 10,\n            \"companyName\": \"Bidirectional Ltd\",\n            \"position\": \"Marketing staff\",\n            \"stages\": [\n                {\n                    \"id\": 18,\n                    \"name\": \"CV screening\",\n                    \"note\": \"fast feedback\",\n                    \"createdAt\": \"2021-02-22T03:34:09Z\"\n                },\n                {\n                    \"id\": 19,\n                    \"name\": \"HR interview\",\n                    \"note\": \"Had a great conversation\",\n                    \"createdAt\": \"2021-02-22T03:34:09Z\"\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 3,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-22T03:34:09Z\",\n            \"updatedAt\": \"2021-02-22T03:34:09Z\"\n        },\n        {\n            \"id\": 3,\n            \"companyName\": \"Fascinate Corp\",\n            \"position\": \"Marketing Staff\",\n            \"stages\": [\n                {\n                    \"id\": 4,\n                    \"name\": \"CV Screening\",\n                    \"note\": \"Slow feedback\",\n                    \"createdAt\": null\n                },\n                {\n                    \"id\": 5,\n                    \"name\": \"HR Interview\",\n                    \"note\": \"Had a great conversation\",\n                    \"createdAt\": null\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 3,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-22T01:24:05Z\",\n            \"updatedAt\": \"2021-02-22T01:24:05Z\"\n        }\n    ],\n    \"page\": 0,\n    \"size\": 30,\n    \"totalElements\": 2,\n    \"totalPages\": 1,\n    \"last\": true\n}"
+							"body": "{\n    \"content\": [\n        {\n            \"id\": 13,\n            \"companyName\": \"Illusion Ltd.\",\n            \"position\": \"Back-end Developer\",\n            \"description\": \"IT Consultant company based in Jakarta. Applied for job 3 days ago\",\n            \"stages\": [\n                {\n                    \"id\": 10,\n                    \"name\": \"CV Screening\",\n                    \"note\": \"Fast feedback\",\n                    \"createdAt\": \"2021-02-23T12:19:47.250Z\"\n                },\n                {\n                    \"id\": 11,\n                    \"name\": \"Coding test\",\n                    \"note\": \"too difficult\",\n                    \"createdAt\": \"2021-02-23T12:19:47.250Z\"\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 3,\n                \"username\": \"akunuser2\",\n                \"name\": \"aziz ilham\"\n            },\n            \"createdAt\": \"2021-02-23T12:19:47.251Z\",\n            \"updatedAt\": \"2021-02-23T12:19:47.251Z\"\n        },\n        {\n            \"id\": 12,\n            \"companyName\": \"Machina Corp.\",\n            \"position\": \"Marketing Staff\",\n            \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n            \"stages\": [],\n            \"createdBy\": {\n                \"id\": 3,\n                \"username\": \"akunuser2\",\n                \"name\": \"aziz ilham\"\n            },\n            \"createdAt\": \"2021-02-23T12:19:38.849Z\",\n            \"updatedAt\": \"2021-02-23T12:19:38.849Z\"\n        }\n    ],\n    \"page\": 0,\n    \"size\": 30,\n    \"totalElements\": 2,\n    \"totalPages\": 1,\n    \"last\": true\n}"
 						}
 					]
 				},

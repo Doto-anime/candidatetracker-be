@@ -32,6 +32,9 @@ public class Stage {
     @CreatedDate
     private Instant createdAt = Instant.now();
 
+//    @Enumerated(EnumType.STRING)
+//    private StageStatus stageStatus;
+
     public Stage() {
 
     }

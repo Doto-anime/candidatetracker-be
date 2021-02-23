@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -27,6 +28,9 @@ public class Job extends UserDateAudit {
 
     @NotBlank
     private String position;
+
+    @Column(columnDefinition="TEXT")
+    private String description;
 
     @OneToMany(
             mappedBy = "job",

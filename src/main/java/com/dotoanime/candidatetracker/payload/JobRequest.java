@@ -19,7 +19,8 @@ public class JobRequest {
     @Size(max = 140)
     private String position;
 
-    @NotNull
+    private String description;
+
     @Valid
     private List<StageRequest> stages;
 }

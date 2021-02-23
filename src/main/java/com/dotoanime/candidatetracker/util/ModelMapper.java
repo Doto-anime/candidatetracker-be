@@ -17,6 +17,7 @@ public class ModelMapper {
         jobResponse.setId(job.getId());
         jobResponse.setCompanyName(job.getCompanyName());
         jobResponse.setPosition(job.getPosition());
+        jobResponse.setDescription(job.getDescription());
         jobResponse.setCreatedAt(job.getCreatedAt());
         jobResponse.setUpdatedAt(job.getUpdatedAt());
 
