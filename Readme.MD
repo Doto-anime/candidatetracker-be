@@ -18,6 +18,7 @@ It's a free hosting. The service might be slow and unavailable at certain hours
 - Get list of my jobs = /api/users/jobs GET
 - Check username availability = /api/users/checkUsername?username=[username] GET
 - User profile = /api/users/profile GET
-
-### Currently unavailable :
 - Add stage (with note) to certain job = /api/jobs/:id/stages POST
+
+### TODO :
+Add validation, error message, and other edge cases

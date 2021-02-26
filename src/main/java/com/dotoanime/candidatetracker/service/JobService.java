@@ -128,7 +128,7 @@ public class JobService {
 
         if (!(jobRequest.getStages() == null)){
             jobRequest.getStages().forEach(stageRequest -> {
-                job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote()));
+                job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote(), stageRequest.getDoneAt()));
             });
         }
 
@@ -157,7 +157,7 @@ public class JobService {
             throw new UnauthorizedException("You don't have access to this page");
         }
 
-        job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote()));
+        job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote(), stageRequest.getDoneAt()));
         Job jobReturn = jobRepository.save(job);
 
         // Retrieve job creator details

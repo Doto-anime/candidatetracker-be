@@ -69,4 +69,8 @@ public class JobController {
         return jobService.addStage(jobId, stageRequest, currentUser);
     }
 
+    @GetMapping("/connection")
+    public ResponseEntity<?> checkConnection() {
+        return ResponseEntity.ok().body(new ApiResponse(true, "Connected"));
+    }
 }

@@ -26,7 +26,7 @@ public class ModelMapper {
             stageResponse.setId(stage.getId());
             stageResponse.setName(stage.getName());
             stageResponse.setNote(stage.getNote());
-            stageResponse.setCreatedAt(stage.getCreatedAt());
+            stageResponse.setDoneAt(stage.getDoneAt());
 
             return stageResponse;
         }).collect(Collectors.toList());

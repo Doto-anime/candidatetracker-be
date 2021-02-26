@@ -23,7 +23,7 @@ public class Job extends UserDateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Fill company name")
     private String companyName;
 
     @NotBlank
