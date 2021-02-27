@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 public class StageRequest {
-    @NotBlank
+
     private String name;
 
     private String note;

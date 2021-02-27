@@ -23,6 +23,15 @@ public class Job extends UserDateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(
+            mappedBy = "job",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    @Fetch(FetchMode.SELECT)
+    private List<Stage> stages = new ArrayList<>();
+
     @NotBlank(message = "Fill company name")
     private String companyName;
 
@@ -32,15 +41,8 @@ public class Job extends UserDateAudit {
     @Column(columnDefinition="TEXT")
     private String description;
 
-    @OneToMany(
-            mappedBy = "job",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            orphanRemoval = true
-    )
-    @Fetch(FetchMode.SELECT)
-//    @BatchSize(size = 30)
-    private List<Stage> stages = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    private JobStatus jobStatus;
 
     public void addStage(Stage stage) {
         stages.add(stage);

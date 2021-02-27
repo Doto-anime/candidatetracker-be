@@ -26,7 +26,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"akunuser2\", \r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"username\": \"akunuser3\", \r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -517,7 +517,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "14"
+									"value": "16"
 								}
 							]
 						}
@@ -547,7 +547,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "14"
+											"value": "16"
 										}
 									]
 								}
@@ -598,7 +598,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 26 Feb 2021 12:04:55 GMT"
+									"value": "Sat, 27 Feb 2021 06:33:22 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -610,7 +610,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 14,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"stages\": [\n        {\n            \"id\": 20,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": \"2021-02-22\"\n        },\n        {\n            \"id\": 21,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-26T12:04:38.990Z\",\n    \"updatedAt\": \"2021-02-26T12:04:38.990Z\"\n}"
+							"body": "{\n    \"id\": 16,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"jobStatus\": \"ongoing\",\n    \"stages\": [\n        {\n            \"id\": 27,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": \"2021-02-22\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-27T06:33:06.396Z\",\n    \"updatedAt\": \"2021-02-27T06:33:06.396Z\"\n}"
 						}
 					]
 				},
@@ -632,7 +632,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"233 Interview\",\r\n    \"note\": \"Had a decent conversation\",\r\n    \"doneAt\": \"2020-02-22\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Another Interview\",\r\n    \"note\": \"Great interviewer\",\r\n    \"doneAt\": \"2020-02-25\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -653,7 +653,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "11"
+									"value": "15"
 								}
 							]
 						}
@@ -677,7 +677,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"User Interview\",\r\n    \"note\": \"Had a decent conversation\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Another Interview\",\r\n    \"note\": \"Great interviewer\",\r\n    \"doneAt\": \"2020-02-25\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -698,7 +698,154 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1"
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Feb 2021 02:46:13 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"stages\": [\n        {\n            \"id\": 34,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-23T12:25:57.276Z\",\n    \"updatedAt\": \"2021-02-23T12:25:57.276Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Job",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobStatus\": \"accepted\"\r\n}"
+						},
+						"url": {
+							"raw": "{{link}}/api/jobs/:id",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Job Field",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"position\": \"Marketing Staff\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\"\r\n}"
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs/:id",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "16"
 										}
 									]
 								}
@@ -749,7 +896,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 23 Feb 2021 11:14:41 GMT"
+									"value": "Sat, 27 Feb 2021 06:35:26 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -761,7 +908,266 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 1,\n    \"companyName\": \"Bidirectional Ltd\",\n    \"position\": \"Marketing staff\",\n    \"stages\": [\n        {\n            \"id\": 1,\n            \"name\": \"CV screening\",\n            \"note\": \"fast feedback\",\n            \"createdAt\": \"2021-02-23T11:13:06.771Z\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"HR interview\",\n            \"note\": \"Had a great conversation\",\n            \"createdAt\": \"2021-02-23T11:13:06.771Z\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"User Interview\",\n            \"note\": \"Had a decent conversation\",\n            \"createdAt\": \"2021-02-23T11:14:41.883083900Z\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-23T11:13:06.812Z\",\n    \"updatedAt\": \"2021-02-23T11:13:06.812Z\"\n}"
+							"body": "{\n    \"id\": 16,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\",\n    \"jobStatus\": \"ongoing\",\n    \"stages\": [\n        {\n            \"id\": 27,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": \"2021-02-22\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-27T06:33:06.396Z\",\n    \"updatedAt\": \"2021-02-27T06:35:26.691444200Z\"\n}"
+						},
+						{
+							"name": "Update Job Status",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"jobStatus\": \"accepted\"\r\n}"
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs/:id",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "16"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Feb 2021 06:34:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 16,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"jobStatus\": \"accepted\",\n    \"stages\": [\n        {\n            \"id\": 27,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": \"2021-02-22\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-27T06:33:06.396Z\",\n    \"updatedAt\": \"2021-02-27T06:34:02.703850Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Stage",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"note\": \"Slow feedback\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{link}}/api/jobs/:jobId/stages/:stageId",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								":jobId",
+								"stages",
+								":stageId"
+							],
+							"variable": [
+								{
+									"key": "jobId",
+									"value": "16"
+								},
+								{
+									"key": "stageId",
+									"value": "27"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Stage Field",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"note\": \"Slow feedback\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs/:jobId/stages/:stageId",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":jobId",
+										"stages",
+										":stageId"
+									],
+									"variable": [
+										{
+											"key": "jobId",
+											"value": "16"
+										},
+										{
+											"key": "stageId",
+											"value": "27"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Feb 2021 07:18:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 16,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\",\n    \"jobStatus\": \"accepted\",\n    \"stages\": [\n        {\n            \"id\": 28,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        },\n        {\n            \"id\": 27,\n            \"name\": \"CV Screening\",\n            \"note\": \"Slow feedback\",\n            \"doneAt\": \"2021-02-02\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-27T06:33:06.396Z\",\n    \"updatedAt\": \"2021-02-27T07:14:40.061Z\"\n}"
 						}
 					]
 				}

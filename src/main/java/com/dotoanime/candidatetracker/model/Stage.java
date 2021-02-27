@@ -34,12 +34,6 @@ public class Stage {
     @JoinColumn(name = "job_id", nullable = false)
     private Job job;
 
-//    @CreatedDate
-//    private Instant createdAt = Instant.now();
-
-//    @Enumerated(EnumType.STRING)
-//    private StageStatus stageStatus;
-
     public Stage() {
 
     }

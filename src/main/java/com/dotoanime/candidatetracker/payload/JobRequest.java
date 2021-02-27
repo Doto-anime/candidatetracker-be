@@ -11,16 +11,13 @@ import java.util.List;
 @Data
 public class JobRequest {
 
-    @NotBlank
-    @Size(max = 140)
     private String companyName;
 
-    @NotBlank
-    @Size(max = 140)
     private String position;
 
     private String description;
 
-    @Valid
+    private String jobStatus;
+
     private List<StageRequest> stages;
 }

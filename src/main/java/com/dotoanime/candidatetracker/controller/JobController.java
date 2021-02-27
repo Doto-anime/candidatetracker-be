@@ -61,12 +61,29 @@ public class JobController {
         return jobService.getJobById(jobId, currentUser);
     }
 
+    @PatchMapping("/{jobId}")
+    @PreAuthorize("hasRole('USER')")
+    public JobResponse updateJob(@CurrentUser UserPrincipal currentUser,
+                         @PathVariable Long jobId,
+                         @Valid @RequestBody JobRequest jobRequest) {
+        return jobService.updateJob(jobId, jobRequest, currentUser);
+    }
+
     @PostMapping("/{jobId}/stages")
     @PreAuthorize("hasRole('USER')")
     public JobResponse addStage(@CurrentUser UserPrincipal currentUser,
                                 @PathVariable Long jobId,
                                 @Valid @RequestBody StageRequest stageRequest) {
         return jobService.addStage(jobId, stageRequest, currentUser);
+    }
+
+    @PatchMapping("/{jobId}/stages/{stageId}")
+    @PreAuthorize("hasRole('USER')")
+    public JobResponse updateStage(@CurrentUser UserPrincipal currentUser,
+                                @PathVariable Long jobId,
+                                @PathVariable Long stageId,
+                                @Valid @RequestBody StageRequest stageRequest) {
+        return jobService.updateStage(jobId, stageId, stageRequest, currentUser);
     }
 
     @GetMapping("/connection")

@@ -1,5 +1,6 @@
 package com.dotoanime.candidatetracker.payload;
 
+import com.dotoanime.candidatetracker.model.JobStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ public class JobResponse {
     private String companyName;
     private String position;
     private String description;
+    private JobStatus jobStatus;
     private List<StageResponse> stages;
     private UserSummary createdBy;
     private Instant createdAt;
