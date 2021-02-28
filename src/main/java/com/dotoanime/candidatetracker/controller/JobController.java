@@ -1,10 +1,7 @@
 package com.dotoanime.candidatetracker.controller;
 
 import com.dotoanime.candidatetracker.model.Job;
-import com.dotoanime.candidatetracker.payload.ApiResponse;
-import com.dotoanime.candidatetracker.payload.JobRequest;
-import com.dotoanime.candidatetracker.payload.JobResponse;
-import com.dotoanime.candidatetracker.payload.StageRequest;
+import com.dotoanime.candidatetracker.payload.*;
 import com.dotoanime.candidatetracker.repository.JobRepository;
 import com.dotoanime.candidatetracker.repository.UserRepository;
 import com.dotoanime.candidatetracker.security.CurrentUser;
@@ -58,32 +55,36 @@ public class JobController {
     }
 
     @GetMapping("/{jobId}")
-    @PostAuthorize("returnObject.createdBy == principal.id")
+//    @PostAuthorize("returnObject.createdBy == principal.id")
+    @PreAuthorize("hasRole('USER')")
     public JobResponse getJobById(@CurrentUser UserPrincipal currentUser,
                                    @PathVariable Long jobId) {
         return jobService.getJobById(jobId, currentUser);
     }
 
     @PatchMapping("/{jobId}")
-    @PostAuthorize("returnObject.createdBy == principal.id")
+    @PreAuthorize("hasRole('USER')")
     public JobResponse updateJob(@PathVariable Long jobId,
-                                @Valid @RequestBody JobRequest jobRequest) {
-        return jobService.updateJob(jobId, jobRequest);
+                                 @CurrentUser UserPrincipal currentUser,
+                                @Valid @RequestBody JobUpdateRequest jobUpdateRequest) {
+        return jobService.updateJob(jobId, jobUpdateRequest, currentUser);
     }
 
     @PostMapping("/{jobId}/stages")
-    @PostAuthorize("returnObject.createdBy == principal.id")
+    @PreAuthorize("hasRole('USER')")
     public JobResponse addStage(@PathVariable Long jobId,
+                                @CurrentUser UserPrincipal currentUser,
                                 @Valid @RequestBody StageRequest stageRequest) {
-        return jobService.addStage(jobId, stageRequest);
+        return jobService.addStage(jobId, stageRequest, currentUser);
     }
 
     @PatchMapping("/{jobId}/stages/{stageId}")
-    @PostAuthorize("returnObject.createdBy == principal.id")
+    @PreAuthorize("hasRole('USER')")
     public JobResponse updateStage(@PathVariable Long jobId,
+                                   @CurrentUser UserPrincipal currentUser,
                                     @PathVariable Long stageId,
-                                    @Valid @RequestBody StageRequest stageRequest) {
-        return jobService.updateStage(jobId, stageId, stageRequest);
+                                    @Valid @RequestBody StageUpdateRequest stageUpdateRequest) {
+        return jobService.updateStage(jobId, stageId, stageUpdateRequest, currentUser);
     }
 
     @GetMapping("/connection")

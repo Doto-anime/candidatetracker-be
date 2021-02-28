@@ -2,14 +2,12 @@ package com.dotoanime.candidatetracker.service;
 
 import com.dotoanime.candidatetracker.error.BadRequestException;
 import com.dotoanime.candidatetracker.error.ResourceNotFoundException;
+import com.dotoanime.candidatetracker.error.UnauthorizedException;
 import com.dotoanime.candidatetracker.model.Job;
 import com.dotoanime.candidatetracker.model.JobStatus;
 import com.dotoanime.candidatetracker.model.Stage;
 import com.dotoanime.candidatetracker.model.User;
-import com.dotoanime.candidatetracker.payload.JobRequest;
-import com.dotoanime.candidatetracker.payload.JobResponse;
-import com.dotoanime.candidatetracker.payload.PagedResponse;
-import com.dotoanime.candidatetracker.payload.StageRequest;
+import com.dotoanime.candidatetracker.payload.*;
 import com.dotoanime.candidatetracker.repository.JobRepository;
 import com.dotoanime.candidatetracker.repository.StageRepository;
 import com.dotoanime.candidatetracker.repository.UserRepository;
@@ -144,14 +142,21 @@ public class JobService {
         return jobRepository.save(job);
     }
 
-    public JobResponse updateJob(Long jobId, JobRequest jobRequest){
+    private static void checkUser(Job job, UserPrincipal currentUser) {
+        if (!job.getCreatedBy().equals(currentUser.getId())){
+            throw new UnauthorizedException("You don't have access to this page");
+        }
+    }
+
+    public JobResponse updateJob(Long jobId, JobUpdateRequest jobUpdateRequest, UserPrincipal currentUser){
         Job job = jobRepository.findById(jobId).orElseThrow(
                 () -> new ResourceNotFoundException("Job", "id", jobId));
+        checkUser(job, currentUser);
 
-        if(jobRequest.getCompanyName() != null) job.setCompanyName(jobRequest.getCompanyName());
-        if(jobRequest.getPosition() != null) job.setPosition(jobRequest.getPosition());
-        if(jobRequest.getDescription() != null) job.setDescription(jobRequest.getDescription());
-        if(jobRequest.getJobStatus() != null) job.setJobStatus(JobStatus.fromString(jobRequest.getJobStatus()));
+        if(jobUpdateRequest.getCompanyName() != null) job.setCompanyName(jobUpdateRequest.getCompanyName());
+        if(jobUpdateRequest.getPosition() != null) job.setPosition(jobUpdateRequest.getPosition());
+        if(jobUpdateRequest.getDescription() != null) job.setDescription(jobUpdateRequest.getDescription());
+        if(jobUpdateRequest.getJobStatus() != null) job.setJobStatus(JobStatus.fromString(jobUpdateRequest.getJobStatus()));
 
         jobRepository.save(job);
 
@@ -164,6 +169,7 @@ public class JobService {
     public JobResponse getJobById(Long jobId, UserPrincipal currentUser) {
         Job job = jobRepository.findById(jobId).orElseThrow(
                 () -> new ResourceNotFoundException("Job", "id", jobId));
+        checkUser(job, currentUser);
 
         // Retrieve job creator details
         User creator = userRepository.findById(job.getCreatedBy())
@@ -172,9 +178,10 @@ public class JobService {
         return ModelMapper.mapJobToJobResponse(job, creator);
     }
 
-    public JobResponse addStage(Long jobId, StageRequest stageRequest) {
+    public JobResponse addStage(Long jobId, StageRequest stageRequest, UserPrincipal currentUser) {
         Job job = jobRepository.findById(jobId).orElseThrow(
                 () -> new ResourceNotFoundException("Job", "id", jobId));
+        checkUser(job, currentUser);
 
         job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote(), stageRequest.getDoneAt()));
         Job jobReturn = jobRepository.save(job);
@@ -186,16 +193,17 @@ public class JobService {
         return ModelMapper.mapJobToJobResponse(jobReturn, creator);
     }
 
-    public JobResponse updateStage(Long jobId, Long stageId, StageRequest stageRequest){
+    public JobResponse updateStage(Long jobId, Long stageId, StageUpdateRequest stageUpdateRequest, UserPrincipal currentUser){
         Job job = jobRepository.findById(jobId).orElseThrow(
                 () -> new ResourceNotFoundException("Job", "id", jobId));
+        checkUser(job, currentUser);
 
         Optional<Stage> op = job.getStages().stream().filter(stage -> stageId.equals(stage.getId())).findFirst();
         if (op.isPresent()){
             Stage stage = op.get();
-            if (stageRequest.getName() != null) stage.setName(stageRequest.getName());
-            if (stageRequest.getNote() != null) stage.setNote(stageRequest.getNote());
-            if (stageRequest.getDoneAt() != null) stage.setDoneAt(stageRequest.getDoneAt());
+            if (stageUpdateRequest.getName() != null) stage.setName(stageUpdateRequest.getName());
+            if (stageUpdateRequest.getNote() != null) stage.setNote(stageUpdateRequest.getNote());
+            if (stageUpdateRequest.getDoneAt() != null) stage.setDoneAt(stageUpdateRequest.getDoneAt());
 
             stageRepository.save(stage);
         } else {
@@ -216,19 +224,5 @@ public class JobService {
         if(size > AppConstants.MAX_PAGE_SIZE) {
             throw new BadRequestException("Page size must not be greater than " + AppConstants.MAX_PAGE_SIZE);
         }
-    }
-
-    Map<Long, User> getJobCreatorMap(List<Job> jobs) {
-        // Get Job Creator details of the given list of polls
-        List<Long> creatorIds = jobs.stream()
-                .map(Job::getCreatedBy)
-                .distinct()
-                .collect(Collectors.toList());
-
-        List<User> creators = userRepository.findByIdIn(creatorIds);
-        Map<Long, User> creatorMap = creators.stream()
-                .collect(Collectors.toMap(User::getId, Function.identity()));
-
-        return creatorMap;
     }
 }
