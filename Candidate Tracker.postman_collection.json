@@ -26,7 +26,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"akunuser3\", \r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"username\": \"akunuser2\", \r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -47,13 +47,99 @@
 					},
 					"response": [
 						{
-							"name": "Login",
+							"name": "401 - wrong username pass",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"akunuser1\", \r\n    \"password\": \"123456\"\r\n}",
+									"raw": "{\r\n    \"username\": \"akunuser22\", \r\n    \"password\": \"123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/auth/signin",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signin"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 11:34:08 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Incorrect username or password\",\n    \"success\": false,\n    \"url\": \"/api/auth/signin\"\n}"
+						},
+						{
+							"name": "200 - Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"akunuser2\", \r\n    \"password\": \"123456\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -77,6 +163,234 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 12:02:06 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"username\": \"akunuser2\",\n    \"name\": \"aziz ilham\",\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMSIsImlhdCI6MTYxNDUxMzcyNiwiZXhwIjoxNjE1MTE4NTI2fQ.jeKhXNdKHapJBnzMTvKIylE14vHb1xGKYrjjK67U4MFRTmmw8NmyjRb-f4jdaxldcQQnLn901us6by02IzcpeQ\",\n    \"tokenType\": \"Bearer\",\n    \"success\": true,\n    \"message\": \"Authentication success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWTTRACKER\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Yana Mustafa\", \r\n    \"username\": \"akunuser4\", \r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{link}}/api/auth/signup",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "400 - username taken",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"aziz ilham\", \r\n    \"username\": \"akunuser2\", \r\n    \"password\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/auth/signup",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 12:03:13 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false,\n    \"message\": \"Username is already taken!\"\n}"
+						},
+						{
+							"name": "400 - Not valid request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"aziz ilham\", \r\n    \"password\": \"dd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/auth/signup",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
 									"key": "Vary",
 									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
 								},
@@ -118,68 +432,24 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 21 Feb 2021 22:34:38 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
+									"value": "Sat, 27 Feb 2021 13:01:33 GMT"
 								},
 								{
 									"key": "Connection",
-									"value": "keep-alive"
+									"value": "close"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"username\": \"akunuser1\",\n    \"name\": \"zaira aji\",\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjEzOTQ2ODc4LCJleHAiOjE2MTQ1NTE2Nzh9.BM8gOko4qGODkTzmUpD2nnUuN6hJJUBfWxSxOhOn9RZDKNa1HLH6sZGvf3U7y0OPU0oBU1UqRqAE5dMXny587w\",\n    \"tokenType\": \"Bearer\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Signup",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.environment.set(\"JWTTRACKER\", pm.response.json().token)"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"aziz ilham\", \r\n    \"username\": \"akunuser2\", \r\n    \"password\": \"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"body": "{\n    \"message\": \"Validation error\",\n    \"success\": false,\n    \"url\": \"/api/auth/signup\",\n    \"validationErrors\": {\n        \"password\": \"Password must be at least 8 characters\",\n        \"username\": \"Username must not be blank\"\n    }\n}"
 						},
-						"url": {
-							"raw": "{{link}}/api/auth/signup",
-							"host": [
-								"{{link}}"
-							],
-							"path": [
-								"api",
-								"auth",
-								"signup"
-							]
-						}
-					},
-					"response": [
 						{
-							"name": "Signup",
+							"name": "201 - sign up",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"zaira aji\", \r\n    \"username\": \"akunuser1\", \r\n    \"password\": \"123456\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Yana Mustafa\", \r\n    \"username\": \"akunuser4\", \r\n    \"password\": \"12345678\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -203,6 +473,14 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
 									"key": "Vary",
 									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
 								},
@@ -211,19 +489,19 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Expires",
-									"value": "0"
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
 								},
 								{
 									"key": "Location",
-									"value": "http://localhost:8080/users/akunuser1"
+									"value": "https://candidatetracker-be.herokuapp.com/users/akunuser4"
 								},
 								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
 								{
-									"key": "X-XSS-Protection",
+									"key": "X-Xss-Protection",
 									"value": "1; mode=block"
 								},
 								{
@@ -233,6 +511,10 @@
 								{
 									"key": "Pragma",
 									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
 								},
 								{
 									"key": "Content-Encoding",
@@ -248,19 +530,15 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sun, 21 Feb 2021 22:34:07 GMT"
+									"value": "Sun, 28 Feb 2021 12:03:39 GMT"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
+									"key": "Via",
+									"value": "1.1 vegur"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"username\": \"akunuser1\",\n    \"name\": \"zaira aji\",\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjEzOTQ2ODQ3LCJleHAiOjE2MTQ1NTE2NDd9.oBbRKy85bMr6B0v4ED-5lwJPoEHtWrnGuM_RhGd0wlhuuSv6IQOZQmxiNJEdYY4BDLBcKrWniHftIMRueI1gZg\",\n    \"tokenType\": \"Bearer\"\n}"
+							"body": "{\n    \"username\": \"akunuser4\",\n    \"name\": \"Yana Mustafa\",\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNSIsImlhdCI6MTYxNDUxMzgxOSwiZXhwIjoxNjE1MTE4NjE5fQ.0UK6e-z0o_TllUAojJxQWT1NF7-leBOWK2Vi21a0mSVV7_BWszF0_Z99nFcapwBjou1l11MU2wmYapm3-Q4fGw\",\n    \"tokenType\": \"Bearer\",\n    \"success\": true,\n    \"message\": \"Authentication success\"\n}"
 						}
 					]
 				}
@@ -302,7 +580,94 @@
 					},
 					"response": [
 						{
-							"name": "Create Job With Stages",
+							"name": "400 - Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"companyName\": \"Machina Corp.\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\r\n    \"stages\": [\r\n        {\r\n            \"name\": \"CV Screening\",\r\n            \"note\": \"Fast feedback\",\r\n            \"doneAt\": \"2021-02-22\"\r\n        },\r\n        {\r\n            \"name\": \"Coding test\",\r\n            \"note\": \"too difficult\",\r\n            \"doneAt\": \"2021-02-25\"\r\n        }\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 11:42:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation error\",\n    \"success\": false,\n    \"url\": \"/api/jobs\",\n    \"validationErrors\": {\n        \"position\": \"Job position must not be blank\"\n    }\n}"
+						},
+						{
+							"name": "201 - Create Job With Stages",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -397,7 +762,7 @@
 							"body": "{\n    \"success\": true,\n    \"message\": \"Job Created Successfully\"\n}"
 						},
 						{
-							"name": "Create Job With No Stages",
+							"name": "201 - Create Job With No Stages",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
@@ -490,70 +855,40 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"success\": true,\n    \"message\": \"Job Created Successfully\"\n}"
-						}
-					]
-				},
-				{
-					"name": "Get job by id",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{JWTTRACKER}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{link}}/api/jobs/:id",
-							"host": [
-								"{{link}}"
-							],
-							"path": [
-								"api",
-								"jobs",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "16"
-								}
-							]
-						}
-					},
-					"response": [
+						},
 						{
-							"name": "Get job by id",
+							"name": "401 - Not authenticated",
 							"originalRequest": {
-								"method": "GET",
+								"method": "POST",
 								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
 									{
 										"key": "Authorization",
 										"value": "Bearer {{JWTTRACKER}}",
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"companyName\": \"Machina Corp.\",\r\n    \"position\": \"Marketing Staff\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\r\n    \"stages\": [\r\n        {\r\n            \"name\": \"CV Screening\",\r\n            \"note\": \"Fast feedback\",\r\n            \"doneAt\": \"2021-02-22\"\r\n        },\r\n        {\r\n            \"name\": \"Coding test\",\r\n            \"note\": \"too difficult\",\r\n            \"doneAt\": \"2021-02-25\"\r\n        }\r\n    ]\r\n}"
+								},
 								"url": {
-									"raw": "{{link}}/api/jobs/:id",
+									"raw": "{{link}}/api/jobs",
 									"host": [
 										"{{link}}"
 									],
 									"path": [
 										"api",
-										"jobs",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id",
-											"value": "16"
-										}
+										"jobs"
 									]
 								}
 							},
-							"status": "OK",
-							"code": 200,
+							"status": "Unauthorized",
+							"code": 401,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
@@ -598,7 +933,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sat, 27 Feb 2021 06:33:22 GMT"
+									"value": "Sun, 28 Feb 2021 11:40:43 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -610,95 +945,243 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 16,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"jobStatus\": \"ongoing\",\n    \"stages\": [\n        {\n            \"id\": 27,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": \"2021-02-22\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-27T06:33:06.396Z\",\n    \"updatedAt\": \"2021-02-27T06:33:06.396Z\"\n}"
+							"body": "{\n    \"message\": \"Full authentication is required to access this resource\",\n    \"success\": false,\n    \"url\": \"/api/jobs\"\n}"
 						}
 					]
 				},
 				{
-					"name": "Add stage",
+					"name": "Get job by id",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
 								"value": "Bearer {{JWTTRACKER}}",
 								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Another Interview\",\r\n    \"note\": \"Great interviewer\",\r\n    \"doneAt\": \"2020-02-25\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{link}}/api/jobs/:id/stages",
+							"raw": "{{link}}/api/jobs/:id",
 							"host": [
 								"{{link}}"
 							],
 							"path": [
 								"api",
 								"jobs",
-								":id",
-								"stages"
+								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": "15"
+									"value": "11"
 								}
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "Add stage",
+							"name": "404 - job not found",
 							"originalRequest": {
-								"method": "POST",
+								"method": "GET",
 								"header": [
 									{
 										"key": "Authorization",
 										"value": "Bearer {{JWTTRACKER}}",
 										"type": "text"
-									},
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Another Interview\",\r\n    \"note\": \"Great interviewer\",\r\n    \"doneAt\": \"2020-02-25\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
-									"raw": "{{link}}/api/jobs/:id/stages",
+									"raw": "{{link}}/api/jobs/:id",
 									"host": [
 										"{{link}}"
 									],
 									"path": [
 										"api",
 										"jobs",
-										":id",
-										"stages"
+										":id"
 									],
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "162"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 11:46:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Job not found with id : '162'\",\n    \"success\": false,\n    \"url\": \"/api/jobs/162\"\n}"
+						},
+						{
+							"name": "403 - Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/jobs/:id",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "16"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 11:46:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"You are not authorized to access this page\",\n    \"success\": false,\n    \"url\": \"/api/jobs/16\"\n}"
+						},
+						{
+							"name": "200 - Get job by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/jobs/:id",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
 										}
 									]
 								}
@@ -761,7 +1244,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sat, 27 Feb 2021 02:46:13 GMT"
+									"value": "Sun, 28 Feb 2021 12:51:33 GMT"
 								},
 								{
 									"key": "Via",
@@ -769,7 +1252,270 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 2,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"stages\": [\n        {\n            \"id\": 34,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-23T12:25:57.276Z\",\n    \"updatedAt\": \"2021-02-23T12:25:57.276Z\"\n}"
+							"body": "{\n    \"id\": 11,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"jobStatus\": null,\n    \"stages\": [\n        {\n            \"id\": 3,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": null\n        },\n        {\n            \"id\": 52,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 53,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 11,\n        \"username\": \"akunuser2\",\n        \"name\": \"aziz ilham\"\n    },\n    \"createdAt\": \"2021-02-26T03:15:42.110Z\",\n    \"updatedAt\": \"2021-02-26T03:15:42.110Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Add stage",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"User Interview\",\r\n    \"note\": \"Had great conversation\",\r\n    \"doneAt\": \"2020-03-01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{link}}/api/jobs/:id/stages",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								":id",
+								"stages"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401 - Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Another Interview\",\r\n    \"note\": \"Great interviewer\",\r\n    \"doneAt\": \"2020-02-25\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs/:id/stages",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id",
+										"stages"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "15"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 27 Feb 2021 13:01:30 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"You don't have access to this page\",\n    \"success\": false,\n    \"url\": \"/api/jobs/15/stages\"\n}"
+						},
+						{
+							"name": "201 - Add stage",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"User Interview\",\r\n    \"note\": \"Had great conversation\",\r\n    \"doneAt\": \"2020-03-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs/:id/stages",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id",
+										"stages"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 13:12:15 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 11,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"jobStatus\": null,\n    \"stages\": [\n        {\n            \"id\": 3,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": null\n        },\n        {\n            \"id\": 52,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 53,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 54,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 57,\n            \"name\": \"User Interview\",\n            \"note\": \"Had great conversation\",\n            \"doneAt\": \"2020-03-01\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 11,\n        \"username\": \"akunuser2\",\n        \"name\": \"aziz ilham\"\n    },\n    \"createdAt\": \"2021-02-26T03:15:42.110Z\",\n    \"updatedAt\": \"2021-02-26T03:15:42.110Z\"\n}"
 						}
 					]
 				},
@@ -791,7 +1537,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"jobStatus\": \"accepted\"\r\n}"
+							"raw": "{\r\n    \"position\": \"HR Staff\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\"\r\n}"
 						},
 						"url": {
 							"raw": "{{link}}/api/jobs/:id",
@@ -806,14 +1552,14 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "16"
+									"value": "11"
 								}
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "Update Job Field",
+							"name": "401 - Unauthorized",
 							"originalRequest": {
 								"method": "PATCH",
 								"header": [
@@ -830,7 +1576,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"position\": \"Marketing Staff\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\"\r\n}"
+									"raw": "{\r\n    \"position\": \"HR Staff\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\"\r\n}"
 								},
 								"url": {
 									"raw": "{{link}}/api/jobs/:id",
@@ -845,15 +1591,23 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "16"
+											"value": "13"
 										}
 									]
 								}
 							},
-							"status": "OK",
-							"code": 200,
+							"status": "Unauthorized",
+							"code": 401,
 							"_postman_previewlanguage": "json",
 							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
 								{
 									"key": "Vary",
 									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
@@ -863,15 +1617,15 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Expires",
-									"value": "0"
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
 								},
 								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
 								{
-									"key": "X-XSS-Protection",
+									"key": "X-Xss-Protection",
 									"value": "1; mode=block"
 								},
 								{
@@ -881,6 +1635,10 @@
 								{
 									"key": "Pragma",
 									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
 								},
 								{
 									"key": "Content-Encoding",
@@ -896,22 +1654,18 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sat, 27 Feb 2021 06:35:26 GMT"
+									"value": "Sun, 28 Feb 2021 13:14:01 GMT"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
+									"key": "Via",
+									"value": "1.1 vegur"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 16,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\",\n    \"jobStatus\": \"ongoing\",\n    \"stages\": [\n        {\n            \"id\": 27,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": \"2021-02-22\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-27T06:33:06.396Z\",\n    \"updatedAt\": \"2021-02-27T06:35:26.691444200Z\"\n}"
+							"body": "{\n    \"message\": \"You don't have access to this page\",\n    \"success\": false,\n    \"url\": \"/api/jobs/13\"\n}"
 						},
 						{
-							"name": "Update Job Status",
+							"name": "200 - Update job field",
 							"originalRequest": {
 								"method": "PATCH",
 								"header": [
@@ -928,7 +1682,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"jobStatus\": \"accepted\"\r\n}"
+									"raw": "{\r\n    \"position\": \"HR Staff\",\r\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\"\r\n}"
 								},
 								"url": {
 									"raw": "{{link}}/api/jobs/:id",
@@ -943,13 +1697,225 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "16"
+											"value": "11"
 										}
 									]
 								}
 							},
 							"status": "OK",
 							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 13:15:56 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 11,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"HR Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\",\n    \"jobStatus\": \"ongoing\",\n    \"stages\": [\n        {\n            \"id\": 3,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": null\n        },\n        {\n            \"id\": 52,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 53,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 54,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 57,\n            \"name\": \"User Interview\",\n            \"note\": \"Had great conversation\",\n            \"doneAt\": \"2020-03-01\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 11,\n        \"username\": \"akunuser2\",\n        \"name\": \"aziz ilham\"\n    },\n    \"createdAt\": \"2021-02-26T03:15:42.110Z\",\n    \"updatedAt\": \"2021-02-28T13:15:56.735Z\"\n}"
+						},
+						{
+							"name": "200 - Update job status",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"jobStatus\": \"ongoing\"\r\n}"
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs/:id",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 13:15:02 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 11,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"HR Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\",\n    \"jobStatus\": \"ongoing\",\n    \"stages\": [\n        {\n            \"id\": 3,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": null\n        },\n        {\n            \"id\": 52,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 53,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 54,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 57,\n            \"name\": \"User Interview\",\n            \"note\": \"Had great conversation\",\n            \"doneAt\": \"2020-03-01\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 11,\n        \"username\": \"akunuser2\",\n        \"name\": \"aziz ilham\"\n    },\n    \"createdAt\": \"2021-02-26T03:15:42.110Z\",\n    \"updatedAt\": \"2021-02-28T13:15:02.806Z\"\n}"
+						},
+						{
+							"name": "400 - invalid job status",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"jobStatus\": \"rejecteddd\"\r\n}"
+								},
+								"url": {
+									"raw": "{{link}}/api/jobs/:id",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"jobs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "13"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
@@ -994,19 +1960,15 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sat, 27 Feb 2021 06:34:02 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
+									"value": "Sun, 28 Feb 2021 12:47:48 GMT"
 								},
 								{
 									"key": "Connection",
-									"value": "keep-alive"
+									"value": "close"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 16,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n    \"jobStatus\": \"accepted\",\n    \"stages\": [\n        {\n            \"id\": 27,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast feedback\",\n            \"doneAt\": \"2021-02-22\"\n        },\n        {\n            \"id\": 28,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-27T06:33:06.396Z\",\n    \"updatedAt\": \"2021-02-27T06:34:02.703850Z\"\n}"
+							"body": "{\n    \"message\": \"No job status constant with textrejecteddd found\",\n    \"success\": false,\n    \"url\": \"/api/jobs/13\"\n}"
 						}
 					]
 				},
@@ -1028,7 +1990,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"note\": \"Slow feedback\"\r\n}",
+							"raw": "{\r\n    \"note\": \"Fast response\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1050,18 +2012,18 @@
 							"variable": [
 								{
 									"key": "jobId",
-									"value": "16"
+									"value": "11"
 								},
 								{
 									"key": "stageId",
-									"value": "27"
+									"value": "3"
 								}
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "Update Stage Field",
+							"name": "200 - Update Stage",
 							"originalRequest": {
 								"method": "PATCH",
 								"header": [
@@ -1078,7 +2040,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"note\": \"Slow feedback\"\r\n}",
+									"raw": "{\r\n    \"note\": \"Fast response\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1100,11 +2062,11 @@
 									"variable": [
 										{
 											"key": "jobId",
-											"value": "16"
+											"value": "11"
 										},
 										{
 											"key": "stageId",
-											"value": "27"
+											"value": "3"
 										}
 									]
 								}
@@ -1114,6 +2076,14 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
 									"key": "Vary",
 									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
 								},
@@ -1122,15 +2092,15 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Expires",
-									"value": "0"
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
 								},
 								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
 								{
-									"key": "X-XSS-Protection",
+									"key": "X-Xss-Protection",
 									"value": "1; mode=block"
 								},
 								{
@@ -1140,6 +2110,10 @@
 								{
 									"key": "Pragma",
 									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
 								},
 								{
 									"key": "Content-Encoding",
@@ -1155,19 +2129,15 @@
 								},
 								{
 									"key": "Date",
-									"value": "Sat, 27 Feb 2021 07:18:33 GMT"
+									"value": "Sun, 28 Feb 2021 13:18:09 GMT"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
+									"key": "Via",
+									"value": "1.1 vegur"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 16,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"Marketing Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\",\n    \"jobStatus\": \"accepted\",\n    \"stages\": [\n        {\n            \"id\": 28,\n            \"name\": \"Coding test\",\n            \"note\": \"too difficult\",\n            \"doneAt\": \"2021-02-25\"\n        },\n        {\n            \"id\": 27,\n            \"name\": \"CV Screening\",\n            \"note\": \"Slow feedback\",\n            \"doneAt\": \"2021-02-02\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 1,\n        \"username\": \"akunuser3\",\n        \"name\": \"hasan muhammad\"\n    },\n    \"createdAt\": \"2021-02-27T06:33:06.396Z\",\n    \"updatedAt\": \"2021-02-27T07:14:40.061Z\"\n}"
+							"body": "{\n    \"id\": 11,\n    \"companyName\": \"Machina Corp.\",\n    \"position\": \"HR Staff\",\n    \"description\": \"Ecommerce company selling home appliances. Based in Jakarta\",\n    \"jobStatus\": \"ongoing\",\n    \"stages\": [\n        {\n            \"id\": 52,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 53,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 54,\n            \"name\": \"Another Interview\",\n            \"note\": \"Great interviewer\",\n            \"doneAt\": \"2020-02-25\"\n        },\n        {\n            \"id\": 57,\n            \"name\": \"User Interview\",\n            \"note\": \"Had great conversation\",\n            \"doneAt\": \"2020-03-01\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"CV Screening\",\n            \"note\": \"Fast response\",\n            \"doneAt\": \"2020-02-13\"\n        }\n    ],\n    \"createdBy\": {\n        \"id\": 11,\n        \"username\": \"akunuser2\",\n        \"name\": \"aziz ilham\"\n    },\n    \"createdAt\": \"2021-02-26T03:15:42.110Z\",\n    \"updatedAt\": \"2021-02-28T13:15:56.735Z\"\n}"
 						}
 					]
 				}
@@ -1201,7 +2171,98 @@
 					},
 					"response": [
 						{
-							"name": "Get my Jobs",
+							"name": "401 - not authenticated",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/users/jobs",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"jobs"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Feb 2021 12:11:20 GMT"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 vegur"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Full authentication is required to access this resource\",\n    \"success\": false,\n    \"url\": \"/api/users/jobs\"\n}"
+						},
+						{
+							"name": "200 - Get my Jobs",
 							"originalRequest": {
 								"method": "GET",
 								"header": [
@@ -1228,6 +2289,14 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
 									"key": "Vary",
 									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
 								},
@@ -1236,15 +2305,15 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Expires",
-									"value": "0"
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
 								},
 								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
 								{
-									"key": "X-XSS-Protection",
+									"key": "X-Xss-Protection",
 									"value": "1; mode=block"
 								},
 								{
@@ -1254,6 +2323,10 @@
 								{
 									"key": "Pragma",
 									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
 								},
 								{
 									"key": "Content-Encoding",
@@ -1269,19 +2342,15 @@
 								},
 								{
 									"key": "Date",
-									"value": "Fri, 26 Feb 2021 12:05:53 GMT"
+									"value": "Sun, 28 Feb 2021 12:10:30 GMT"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
+									"key": "Via",
+									"value": "1.1 vegur"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"content\": [\n        {\n            \"id\": 14,\n            \"companyName\": \"Machina Corp.\",\n            \"position\": \"Marketing Staff\",\n            \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n            \"stages\": [\n                {\n                    \"id\": 20,\n                    \"name\": \"CV Screening\",\n                    \"note\": \"Fast feedback\",\n                    \"doneAt\": \"2021-02-22\"\n                },\n                {\n                    \"id\": 21,\n                    \"name\": \"Coding test\",\n                    \"note\": \"too difficult\",\n                    \"doneAt\": \"2021-02-25\"\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-26T12:04:38.990Z\",\n            \"updatedAt\": \"2021-02-26T12:04:38.990Z\"\n        },\n        {\n            \"id\": 11,\n            \"companyName\": \"Machina Corp.\",\n            \"position\": \"Marketing Staff\",\n            \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n            \"stages\": [\n                {\n                    \"id\": 12,\n                    \"name\": \"User Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": \"2020-10-22\"\n                },\n                {\n                    \"id\": 13,\n                    \"name\": \"HR Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": \"2020-10-22\"\n                },\n                {\n                    \"id\": 14,\n                    \"name\": \"1 Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": \"2020-10-22\"\n                },\n                {\n                    \"id\": 15,\n                    \"name\": \"1 Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": \"2020-10-22\"\n                },\n                {\n                    \"id\": 16,\n                    \"name\": \"1 Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": \"2020-02-22\"\n                },\n                {\n                    \"id\": 17,\n                    \"name\": \"2 Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": \"2020-02-22\"\n                },\n                {\n                    \"id\": 18,\n                    \"name\": \"2 Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": \"2020-02-22\"\n                },\n                {\n                    \"id\": 19,\n                    \"name\": \"233 Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": \"2020-02-22\"\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T12:14:46.744Z\",\n            \"updatedAt\": \"2021-02-23T12:14:46.744Z\"\n        },\n        {\n            \"id\": 10,\n            \"companyName\": \"Illusion Ltd.\",\n            \"position\": \"Back-end Developer\",\n            \"description\": \"IT Consultant company based in Jakarta. Applied for job 3 days ago\",\n            \"stages\": [\n                {\n                    \"id\": 8,\n                    \"name\": \"CV Screening\",\n                    \"note\": \"Fast feedback\",\n                    \"doneAt\": null\n                },\n                {\n                    \"id\": 9,\n                    \"name\": \"Coding test\",\n                    \"note\": \"too difficult\",\n                    \"doneAt\": null\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T12:13:10.892Z\",\n            \"updatedAt\": \"2021-02-23T12:13:10.892Z\"\n        },\n        {\n            \"id\": 9,\n            \"companyName\": \"no stage\",\n            \"position\": \"da staff\",\n            \"description\": \"applied for job\",\n            \"stages\": [\n                {\n                    \"id\": 6,\n                    \"name\": \"CV Screening\",\n                    \"note\": \"Fast feedback\",\n                    \"doneAt\": null\n                },\n                {\n                    \"id\": 7,\n                    \"name\": \"Coding test\",\n                    \"note\": \"too difficult\",\n                    \"doneAt\": null\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T12:09:41.799Z\",\n            \"updatedAt\": \"2021-02-23T12:09:41.799Z\"\n        },\n        {\n            \"id\": 8,\n            \"companyName\": \"no stage\",\n            \"position\": \"da staff\",\n            \"description\": \"applied for job\",\n            \"stages\": [],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T12:09:15.737Z\",\n            \"updatedAt\": \"2021-02-23T12:09:15.737Z\"\n        },\n        {\n            \"id\": 7,\n            \"companyName\": \"no stage\",\n            \"position\": \"da staff\",\n            \"description\": \"16475\",\n            \"stages\": [],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T12:06:25.007Z\",\n            \"updatedAt\": \"2021-02-23T12:06:25.007Z\"\n        },\n        {\n            \"id\": 6,\n            \"companyName\": \"no stage\",\n            \"position\": \"da staff\",\n            \"description\": null,\n            \"stages\": [],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T12:05:48.329Z\",\n            \"updatedAt\": \"2021-02-23T12:05:48.329Z\"\n        },\n        {\n            \"id\": 5,\n            \"companyName\": \"ad Ltd\",\n            \"position\": \"da staff\",\n            \"description\": null,\n            \"stages\": [],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T12:05:27.862Z\",\n            \"updatedAt\": \"2021-02-23T12:05:27.862Z\"\n        },\n        {\n            \"id\": 4,\n            \"companyName\": \"ad Ltd\",\n            \"position\": \"da staff\",\n            \"description\": null,\n            \"stages\": [],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T11:58:31.353Z\",\n            \"updatedAt\": \"2021-02-23T11:58:31.353Z\"\n        },\n        {\n            \"id\": 3,\n            \"companyName\": \"ad Ltd\",\n            \"position\": \"da staff\",\n            \"description\": null,\n            \"stages\": [],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T11:25:40.061Z\",\n            \"updatedAt\": \"2021-02-23T11:25:40.061Z\"\n        },\n        {\n            \"id\": 2,\n            \"companyName\": \"ad Ltd\",\n            \"position\": \"da staff\",\n            \"description\": null,\n            \"stages\": [\n                {\n                    \"id\": 4,\n                    \"name\": \"CV screening\",\n                    \"note\": \"fast feedback\",\n                    \"doneAt\": null\n                },\n                {\n                    \"id\": 5,\n                    \"name\": \"HR interview\",\n                    \"note\": \"Had a great conversation\",\n                    \"doneAt\": null\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T11:20:45.224Z\",\n            \"updatedAt\": \"2021-02-23T11:20:45.224Z\"\n        },\n        {\n            \"id\": 1,\n            \"companyName\": \"Bidirectional Ltd\",\n            \"position\": \"Marketing staff\",\n            \"description\": null,\n            \"stages\": [\n                {\n                    \"id\": 1,\n                    \"name\": \"CV screening\",\n                    \"note\": \"fast feedback\",\n                    \"doneAt\": null\n                },\n                {\n                    \"id\": 2,\n                    \"name\": \"HR interview\",\n                    \"note\": \"Had a great conversation\",\n                    \"doneAt\": null\n                },\n                {\n                    \"id\": 3,\n                    \"name\": \"User Interview\",\n                    \"note\": \"Had a decent conversation\",\n                    \"doneAt\": null\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 1,\n                \"username\": \"akunuser3\",\n                \"name\": \"hasan muhammad\"\n            },\n            \"createdAt\": \"2021-02-23T11:13:06.812Z\",\n            \"updatedAt\": \"2021-02-23T11:13:06.812Z\"\n        }\n    ],\n    \"page\": 0,\n    \"size\": 30,\n    \"totalElements\": 12,\n    \"totalPages\": 1,\n    \"last\": true\n}"
+							"body": "{\n    \"success\": true,\n    \"message\": \"List of user's job retrieved\",\n    \"content\": [\n        {\n            \"id\": 46,\n            \"companyName\": \"Machina Corp.\",\n            \"position\": \"Marketing Staff\",\n            \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n            \"jobStatus\": \"ongoing\",\n            \"stages\": [\n                {\n                    \"id\": 47,\n                    \"name\": \"CV Screening\",\n                    \"note\": \"Fast feedback\",\n                    \"doneAt\": \"2021-02-22\"\n                },\n                {\n                    \"id\": 48,\n                    \"name\": \"Coding test\",\n                    \"note\": \"too difficult\",\n                    \"doneAt\": \"2021-02-25\"\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 11,\n                \"username\": \"akunuser2\",\n                \"name\": \"aziz ilham\"\n            },\n            \"createdAt\": \"2021-02-28T11:56:27.409Z\",\n            \"updatedAt\": \"2021-02-28T11:56:27.409Z\"\n        },\n        {\n            \"id\": 11,\n            \"companyName\": \"Machina Corp.\",\n            \"position\": \"Marketing Staff\",\n            \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n            \"jobStatus\": null,\n            \"stages\": [\n                {\n                    \"id\": 3,\n                    \"name\": \"CV Screening\",\n                    \"note\": \"Fast feedback\",\n                    \"doneAt\": null\n                }\n            ],\n            \"createdBy\": {\n                \"id\": 11,\n                \"username\": \"akunuser2\",\n                \"name\": \"aziz ilham\"\n            },\n            \"createdAt\": \"2021-02-26T03:15:42.110Z\",\n            \"updatedAt\": \"2021-02-26T03:15:42.110Z\"\n        },\n        {\n            \"id\": 10,\n            \"companyName\": \"Machina Corp.\",\n            \"position\": \"Marketing Staff\",\n            \"description\": \"Ecommerce company selling home appliances. Based in Bandung\",\n            \"jobStatus\": null,\n            \"stages\": [],\n            \"createdBy\": {\n                \"id\": 11,\n                \"username\": \"akunuser2\",\n                \"name\": \"aziz ilham\"\n            },\n            \"createdAt\": \"2021-02-26T03:14:42.536Z\",\n            \"updatedAt\": \"2021-02-26T03:14:42.536Z\"\n        }\n    ],\n    \"page\": 0,\n    \"size\": 30,\n    \"totalElements\": 3,\n    \"totalPages\": 1,\n    \"last\": true\n}"
 						}
 					]
 				},
@@ -1310,7 +2379,7 @@
 					},
 					"response": [
 						{
-							"name": "Check username availability",
+							"name": "200 - available",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -1337,6 +2406,14 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
 									"key": "Vary",
 									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
 								},
@@ -1345,15 +2422,15 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Expires",
-									"value": "0"
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
 								},
 								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
 								{
-									"key": "X-XSS-Protection",
+									"key": "X-Xss-Protection",
 									"value": "1; mode=block"
 								},
 								{
@@ -1363,6 +2440,10 @@
 								{
 									"key": "Pragma",
 									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
 								},
 								{
 									"key": "Content-Encoding",
@@ -1378,19 +2459,15 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 22 Feb 2021 00:38:57 GMT"
+									"value": "Sun, 28 Feb 2021 12:11:52 GMT"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
+									"key": "Via",
+									"value": "1.1 vegur"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"available\": true\n}"
+							"body": "{\n    \"available\": true,\n    \"success\": true\n}"
 						}
 					]
 				},
@@ -1419,7 +2496,7 @@
 					},
 					"response": [
 						{
-							"name": "User profile",
+							"name": "200 - User profile",
 							"originalRequest": {
 								"method": "GET",
 								"header": [
@@ -1446,6 +2523,14 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
+									"key": "Server",
+									"value": "Cowboy"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
 									"key": "Vary",
 									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
 								},
@@ -1454,15 +2539,15 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Expires",
-									"value": "0"
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
 								},
 								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
 								},
 								{
-									"key": "X-XSS-Protection",
+									"key": "X-Xss-Protection",
 									"value": "1; mode=block"
 								},
 								{
@@ -1472,6 +2557,10 @@
 								{
 									"key": "Pragma",
 									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
 								},
 								{
 									"key": "Content-Encoding",
@@ -1487,19 +2576,15 @@
 								},
 								{
 									"key": "Date",
-									"value": "Mon, 22 Feb 2021 00:41:17 GMT"
+									"value": "Sun, 28 Feb 2021 12:12:41 GMT"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
+									"key": "Via",
+									"value": "1.1 vegur"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 1,\n    \"username\": \"akunuser1\",\n    \"name\": \"zaira aji\",\n    \"createdAt\": \"2021-02-21T23:13:23Z\",\n    \"jobCount\": 1\n}"
+							"body": "{\n    \"id\": 11,\n    \"username\": \"akunuser2\",\n    \"name\": \"aziz ilham\",\n    \"createdAt\": \"2021-02-25T12:57:18.688Z\",\n    \"jobCount\": 3,\n    \"success\": true\n}"
 						}
 					]
 				}
