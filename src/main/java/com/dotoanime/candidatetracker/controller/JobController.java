@@ -10,6 +10,7 @@ import com.dotoanime.candidatetracker.service.JobService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -72,10 +73,12 @@ public class JobController {
 
     @PostMapping("/{jobId}/stages")
     @PreAuthorize("hasRole('USER')")
-    public JobResponse addStage(@PathVariable Long jobId,
-                                @CurrentUser UserPrincipal currentUser,
-                                @Valid @RequestBody StageRequest stageRequest) {
-        return jobService.addStage(jobId, stageRequest, currentUser);
+    public ResponseEntity<JobResponse> addStage(@PathVariable Long jobId,
+                                                @CurrentUser UserPrincipal currentUser,
+                                                @Valid @RequestBody StageRequest stageRequest) {
+        JobResponse jobResponse = jobService.addStage(jobId, stageRequest, currentUser);
+
+        return new ResponseEntity<>(jobResponse, HttpStatus.CREATED);
     }
 
     @PatchMapping("/{jobId}/stages/{stageId}")
