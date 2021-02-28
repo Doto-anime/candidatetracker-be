@@ -22,5 +22,3 @@ It's a free hosting. The service is unavailable at 12 am to 8 am and might be sl
 - Add stage (with note) to certain job = /api/jobs/:id/stages POST
 - Update stage of a certain job = /api/jobs/:jobId/stages/:stageId PATCH
 
-### TODO :
-Add validation, error message, and other edge cases

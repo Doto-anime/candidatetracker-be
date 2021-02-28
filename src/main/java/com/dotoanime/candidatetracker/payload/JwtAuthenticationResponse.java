@@ -9,6 +9,7 @@ public class JwtAuthenticationResponse {
     private String token;
     private String tokenType = "Bearer";
     private Boolean success = true;
+    private String message = "Authentication success";
 
     public JwtAuthenticationResponse(String username, String name, String token) {
         this.username = username;

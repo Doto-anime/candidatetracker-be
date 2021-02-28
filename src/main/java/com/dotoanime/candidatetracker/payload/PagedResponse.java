@@ -8,6 +8,7 @@ import java.util.List;
 public class PagedResponse<T> {
 
     private Boolean success = true;
+    private String message = "List of user's job retrieved";
     private List<T> content;
     private int page;
     private int size;
