@@ -2,17 +2,16 @@ package com.dotoanime.candidatetracker.payload;
 
 import lombok.Data;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
 public class JobRequest {
 
+    @NotBlank (message = "Company name must not be blank")
     private String companyName;
 
+    @NotBlank (message = "Job position must not be blank")
     private String position;
 
     private String description;

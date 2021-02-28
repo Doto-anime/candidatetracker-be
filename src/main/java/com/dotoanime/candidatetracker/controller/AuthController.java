@@ -1,6 +1,7 @@
 package com.dotoanime.candidatetracker.controller;
 
-import com.dotoanime.candidatetracker.exception.AppException;
+import com.dotoanime.candidatetracker.error.InternalAppException;
+import com.dotoanime.candidatetracker.error.UnauthorizedException;
 import com.dotoanime.candidatetracker.model.Role;
 import com.dotoanime.candidatetracker.model.RoleName;
 import com.dotoanime.candidatetracker.model.User;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -54,16 +56,16 @@ public class AuthController {
     CustomUserDetailsService customUserDetailsService;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) throws Exception {
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        } catch (BadCredentialsException e){
+            throw new UnauthorizedException("Incorrect username or password");
+        }
 
         UserPrincipal user = (UserPrincipal) customUserDetailsService.loadUserByUsername(loginRequest.getUsername());
 
@@ -84,7 +86,7 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-                .orElseThrow(() -> new AppException("User Role not set."));
+                .orElseThrow(() -> new InternalAppException("User Role not set."));
 
         user.setRoles(Collections.singleton(userRole));
 

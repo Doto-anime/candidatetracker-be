@@ -11,6 +11,7 @@ public class UserProfile {
     private String name;
     private Instant createdAt;
     private Long jobCount;
+    private Boolean success = true;
 
     public UserProfile(Long id, String username, String name, Instant createdAt, Long jobCount) {
         this.id = id;

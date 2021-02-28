@@ -1,6 +1,6 @@
 package com.dotoanime.candidatetracker.security;
 
-import com.dotoanime.candidatetracker.exception.ResourceNotFoundException;
+import com.dotoanime.candidatetracker.error.ResourceNotFoundException;
 import com.dotoanime.candidatetracker.model.User;
 import com.dotoanime.candidatetracker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

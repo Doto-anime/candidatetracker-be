@@ -1,6 +1,6 @@
 package com.dotoanime.candidatetracker.model;
 
-import com.dotoanime.candidatetracker.exception.BadRequestException;
+import com.dotoanime.candidatetracker.error.BadRequestException;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum JobStatus {

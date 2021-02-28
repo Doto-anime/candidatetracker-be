@@ -1,6 +1,5 @@
 package com.dotoanime.candidatetracker.repository;
 
-import com.dotoanime.candidatetracker.model.Job;
 import com.dotoanime.candidatetracker.model.Stage;
 import org.springframework.data.jpa.repository.JpaRepository;
 

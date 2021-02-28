@@ -1,7 +1,6 @@
 package com.dotoanime.candidatetracker.payload;
 
 import com.dotoanime.candidatetracker.model.JobStatus;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.time.Instant;

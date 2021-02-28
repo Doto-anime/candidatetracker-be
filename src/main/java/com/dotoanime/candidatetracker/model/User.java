@@ -2,11 +2,8 @@ package com.dotoanime.candidatetracker.model;
 
 import com.dotoanime.candidatetracker.model.audit.DateAudit;
 import lombok.Data;
-import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,13 +19,10 @@ public class User extends DateAudit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String name;
 
-    @NotBlank
     private String username;
 
-    @NotBlank
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

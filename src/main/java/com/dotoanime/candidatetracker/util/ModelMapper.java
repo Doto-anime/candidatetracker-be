@@ -2,10 +2,9 @@ package com.dotoanime.candidatetracker.util;
 
 import com.dotoanime.candidatetracker.model.Job;
 import com.dotoanime.candidatetracker.model.User;
-import com.dotoanime.candidatetracker.payload.StageResponse;
 import com.dotoanime.candidatetracker.payload.JobResponse;
+import com.dotoanime.candidatetracker.payload.StageResponse;
 import com.dotoanime.candidatetracker.payload.UserSummary;
-import com.dotoanime.candidatetracker.security.UserPrincipal;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -33,9 +33,13 @@ public class ErrorHandler implements ErrorController {
 
         String message = (String) attributes.get("message");
         String url = (String) attributes.get("path");
-        int status = (int) attributes.get("status");
+        int status = (Integer) attributes.get("status");
 
-        return new ApiError(status, message, url);
+        if (status == 403){
+            return new ApiError("You are not authorized to access this page", url);
+        }
+
+        return new ApiError(message, url);
     }
 
     @Override

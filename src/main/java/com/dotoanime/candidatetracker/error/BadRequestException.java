@@ -1,4 +1,4 @@
-package com.dotoanime.candidatetracker.exception;
+package com.dotoanime.candidatetracker.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

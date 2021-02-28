@@ -1,17 +1,20 @@
 package com.dotoanime.candidatetracker.controller;
 
-import com.dotoanime.candidatetracker.model.*;
-import com.dotoanime.candidatetracker.payload.*;
+import com.dotoanime.candidatetracker.model.Job;
+import com.dotoanime.candidatetracker.payload.ApiResponse;
+import com.dotoanime.candidatetracker.payload.JobRequest;
+import com.dotoanime.candidatetracker.payload.JobResponse;
+import com.dotoanime.candidatetracker.payload.StageRequest;
 import com.dotoanime.candidatetracker.repository.JobRepository;
 import com.dotoanime.candidatetracker.repository.UserRepository;
 import com.dotoanime.candidatetracker.security.CurrentUser;
 import com.dotoanime.candidatetracker.security.UserPrincipal;
 import com.dotoanime.candidatetracker.service.JobService;
-import com.dotoanime.candidatetracker.util.AppConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -55,35 +58,32 @@ public class JobController {
     }
 
     @GetMapping("/{jobId}")
-    @PreAuthorize("hasRole('USER')")
+    @PostAuthorize("returnObject.createdBy == principal.id")
     public JobResponse getJobById(@CurrentUser UserPrincipal currentUser,
                                    @PathVariable Long jobId) {
         return jobService.getJobById(jobId, currentUser);
     }
 
     @PatchMapping("/{jobId}")
-    @PreAuthorize("hasRole('USER')")
-    public JobResponse updateJob(@CurrentUser UserPrincipal currentUser,
-                         @PathVariable Long jobId,
-                         @Valid @RequestBody JobRequest jobRequest) {
-        return jobService.updateJob(jobId, jobRequest, currentUser);
+    @PostAuthorize("returnObject.createdBy == principal.id")
+    public JobResponse updateJob(@PathVariable Long jobId,
+                                @Valid @RequestBody JobRequest jobRequest) {
+        return jobService.updateJob(jobId, jobRequest);
     }
 
     @PostMapping("/{jobId}/stages")
-    @PreAuthorize("hasRole('USER')")
-    public JobResponse addStage(@CurrentUser UserPrincipal currentUser,
-                                @PathVariable Long jobId,
+    @PostAuthorize("returnObject.createdBy == principal.id")
+    public JobResponse addStage(@PathVariable Long jobId,
                                 @Valid @RequestBody StageRequest stageRequest) {
-        return jobService.addStage(jobId, stageRequest, currentUser);
+        return jobService.addStage(jobId, stageRequest);
     }
 
     @PatchMapping("/{jobId}/stages/{stageId}")
-    @PreAuthorize("hasRole('USER')")
-    public JobResponse updateStage(@CurrentUser UserPrincipal currentUser,
-                                @PathVariable Long jobId,
-                                @PathVariable Long stageId,
-                                @Valid @RequestBody StageRequest stageRequest) {
-        return jobService.updateStage(jobId, stageId, stageRequest, currentUser);
+    @PostAuthorize("returnObject.createdBy == principal.id")
+    public JobResponse updateStage(@PathVariable Long jobId,
+                                    @PathVariable Long stageId,
+                                    @Valid @RequestBody StageRequest stageRequest) {
+        return jobService.updateStage(jobId, stageId, stageRequest);
     }
 
     @GetMapping("/connection")

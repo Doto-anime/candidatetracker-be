@@ -1,10 +1,15 @@
 package com.dotoanime.candidatetracker.service;
 
-import com.dotoanime.candidatetracker.exception.BadRequestException;
-import com.dotoanime.candidatetracker.exception.ResourceNotFoundException;
-import com.dotoanime.candidatetracker.exception.UnauthorizedException;
-import com.dotoanime.candidatetracker.model.*;
-import com.dotoanime.candidatetracker.payload.*;
+import com.dotoanime.candidatetracker.error.BadRequestException;
+import com.dotoanime.candidatetracker.error.ResourceNotFoundException;
+import com.dotoanime.candidatetracker.model.Job;
+import com.dotoanime.candidatetracker.model.JobStatus;
+import com.dotoanime.candidatetracker.model.Stage;
+import com.dotoanime.candidatetracker.model.User;
+import com.dotoanime.candidatetracker.payload.JobRequest;
+import com.dotoanime.candidatetracker.payload.JobResponse;
+import com.dotoanime.candidatetracker.payload.PagedResponse;
+import com.dotoanime.candidatetracker.payload.StageRequest;
 import com.dotoanime.candidatetracker.repository.JobRepository;
 import com.dotoanime.candidatetracker.repository.StageRepository;
 import com.dotoanime.candidatetracker.repository.UserRepository;
@@ -18,9 +23,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collections;
 import java.util.List;
@@ -141,12 +144,9 @@ public class JobService {
         return jobRepository.save(job);
     }
 
-    public JobResponse updateJob(Long jobId, JobRequest jobRequest, UserPrincipal currentUser){
+    public JobResponse updateJob(Long jobId, JobRequest jobRequest){
         Job job = jobRepository.findById(jobId).orElseThrow(
                 () -> new ResourceNotFoundException("Job", "id", jobId));
-        if (!job.getCreatedBy().equals(currentUser.getId())){
-            throw new UnauthorizedException("You don't have access to this page");
-        }
 
         if(jobRequest.getCompanyName() != null) job.setCompanyName(jobRequest.getCompanyName());
         if(jobRequest.getPosition() != null) job.setPosition(jobRequest.getPosition());
@@ -165,10 +165,6 @@ public class JobService {
         Job job = jobRepository.findById(jobId).orElseThrow(
                 () -> new ResourceNotFoundException("Job", "id", jobId));
 
-        if (!job.getCreatedBy().equals(currentUser.getId())){
-            throw new UnauthorizedException("You don't have access to this page");
-        }
-
         // Retrieve job creator details
         User creator = userRepository.findById(job.getCreatedBy())
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", job.getCreatedBy()));
@@ -176,12 +172,9 @@ public class JobService {
         return ModelMapper.mapJobToJobResponse(job, creator);
     }
 
-    public JobResponse addStage(Long jobId, StageRequest stageRequest, UserPrincipal currentUser) {
+    public JobResponse addStage(Long jobId, StageRequest stageRequest) {
         Job job = jobRepository.findById(jobId).orElseThrow(
                 () -> new ResourceNotFoundException("Job", "id", jobId));
-        if (!job.getCreatedBy().equals(currentUser.getId())){
-            throw new UnauthorizedException("You don't have access to this page");
-        }
 
         job.addStage(new Stage(stageRequest.getName(), stageRequest.getNote(), stageRequest.getDoneAt()));
         Job jobReturn = jobRepository.save(job);
@@ -193,12 +186,9 @@ public class JobService {
         return ModelMapper.mapJobToJobResponse(jobReturn, creator);
     }
 
-    public JobResponse updateStage(Long jobId, Long stageId, StageRequest stageRequest, UserPrincipal currentUser){
+    public JobResponse updateStage(Long jobId, Long stageId, StageRequest stageRequest){
         Job job = jobRepository.findById(jobId).orElseThrow(
                 () -> new ResourceNotFoundException("Job", "id", jobId));
-        if (!job.getCreatedBy().equals(currentUser.getId())){
-            throw new UnauthorizedException("You don't have access to this page");
-        }
 
         Optional<Stage> op = job.getStages().stream().filter(stage -> stageId.equals(stage.getId())).findFirst();
         if (op.isPresent()){
