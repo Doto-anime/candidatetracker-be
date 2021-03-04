@@ -1,8 +1,10 @@
 package com.dotoanime.candidatetracker.security;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,12 +46,41 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+            } else {
+                logger.error("Cannot set the Security Context");
             }
+        } catch (ExpiredJwtException ex) {
+            logger.info("ExpiredJwtException");
+
+//            String isRefreshToken = request.getHeader("isRefreshToken");
+            String requestURL = request.getRequestURL().toString();
+            // allow for Refresh Token creation if following conditions are true.
+            if (requestURL.contains("refreshtoken")) {
+                allowForRefreshToken(ex, request);
+                logger.info("allowForRefreshToken");
+            } else
+                request.setAttribute("exception", ex);
+
+        } catch (BadCredentialsException ex) {
+            request.setAttribute("exception", ex);
         } catch (Exception ex) {
-            logger.error("Could not set user authentication in security context", ex);
+            System.out.println(ex);
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private void allowForRefreshToken(ExpiredJwtException ex, HttpServletRequest request) {
+        // create a UsernamePasswordAuthenticationToken with null values.
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                new UsernamePasswordAuthenticationToken(null, null, null);
+        // After setting the Authentication in the context, we specify
+        // that the current user is authenticated. So it passes the
+        // Spring Security Configurations successfully.
+        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        // Set the claims so that in controller we will be using it to create
+        // new JWT
+        request.setAttribute("claims", ex.getClaims());
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {

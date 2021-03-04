@@ -541,6 +541,238 @@
 							"body": "{\n    \"username\": \"akunuser4\",\n    \"name\": \"Yana Mustafa\",\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNSIsImlhdCI6MTYxNDUxMzgxOSwiZXhwIjoxNjE1MTE4NjE5fQ.0UK6e-z0o_TllUAojJxQWT1NF7-leBOWK2Vi21a0mSVV7_BWszF0_Z99nFcapwBjou1l11MU2wmYapm3-Q4fGw\",\n    \"tokenType\": \"Bearer\",\n    \"success\": true,\n    \"message\": \"Authentication success\"\n}"
 						}
 					]
+				},
+				{
+					"name": "refresh token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"JWTTRACKER\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/api/auth/refreshtoken",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"refreshtoken"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "refresh token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/auth/refreshtoken",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"refreshtoken"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Mar 2021 12:49:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiZXhwIjoxNjE0ODcxMTYxLCJpYXQiOjE2MTQ4NjIxNjF9.0NMdY4fIA2MWjLDaTHcczGwm2fe2mdrpmy-xbxPbPOfFgqnaDQupgt0bscLg-Qi8zDclfMLIjaE0xHMDqNLg2A\",\n    \"tokenType\": \"Bearer\",\n    \"success\": true,\n    \"message\": \"Token refresh success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "auth error",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{JWTTRACKER}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{link}}/api/users/jobs",
+							"host": [
+								"{{link}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"jobs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401 - expired token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/users/jobs",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"jobs"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Mar 2021 12:53:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Expired token\",\n    \"success\": false,\n    \"url\": \"/api/users/jobs\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -1522,6 +1754,16 @@
 				{
 					"name": "Update Job",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWTTRACKER}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [
 							{
@@ -2260,6 +2502,89 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"message\": \"Full authentication is required to access this resource\",\n    \"success\": false,\n    \"url\": \"/api/users/jobs\"\n}"
+						},
+						{
+							"name": "401 - expired token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{JWTTRACKER}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{link}}/api/users/jobs",
+									"host": [
+										"{{link}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"jobs"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "origin,access-control-request-method,access-control-request-headers,accept-encoding"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 04 Mar 2021 12:49:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Expired token\",\n    \"success\": false,\n    \"url\": \"/api/users/jobs\"\n}"
 						},
 						{
 							"name": "200 - Get my Jobs",

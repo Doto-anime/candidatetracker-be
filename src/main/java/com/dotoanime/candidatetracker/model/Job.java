@@ -37,6 +37,9 @@ public class Job extends UserDateAudit {
     @Enumerated(EnumType.STRING)
     private JobStatus jobStatus;
 
+    public Job() {
+    }
+
     public void addStage(Stage stage) {
         stages.add(stage);
         stage.setJob(this);

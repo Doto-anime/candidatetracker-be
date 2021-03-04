@@ -5,15 +5,13 @@ import com.dotoanime.candidatetracker.error.UnauthorizedException;
 import com.dotoanime.candidatetracker.model.Role;
 import com.dotoanime.candidatetracker.model.RoleName;
 import com.dotoanime.candidatetracker.model.User;
-import com.dotoanime.candidatetracker.payload.ApiResponse;
-import com.dotoanime.candidatetracker.payload.JwtAuthenticationResponse;
-import com.dotoanime.candidatetracker.payload.LoginRequest;
-import com.dotoanime.candidatetracker.payload.SignUpRequest;
+import com.dotoanime.candidatetracker.payload.*;
 import com.dotoanime.candidatetracker.repository.RoleRepository;
 import com.dotoanime.candidatetracker.repository.UserRepository;
 import com.dotoanime.candidatetracker.security.CustomUserDetailsService;
 import com.dotoanime.candidatetracker.security.JwtTokenProvider;
 import com.dotoanime.candidatetracker.security.UserPrincipal;
+import io.jsonwebtoken.impl.DefaultClaims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +21,16 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -101,5 +100,23 @@ public class AuthController {
         String jwt = tokenProvider.generateToken(userPrincipal);
 
         return ResponseEntity.created(location).body(new JwtAuthenticationResponse(userPrincipal.getUsername(), userPrincipal.getName(), jwt));
+    }
+
+    @GetMapping("/refreshtoken")
+    public ResponseEntity<?> refreshtoken(HttpServletRequest request) throws Exception {
+        // From the HttpRequest get the claims
+        DefaultClaims claims = (DefaultClaims) request.getAttribute("claims");
+
+        Map<String, Object> expectedMap = getMapFromIoJsonwebtokenClaims(claims);
+        String token = tokenProvider.doGenerateRefreshToken(expectedMap, expectedMap.get("sub").toString());
+        return ResponseEntity.ok(new TokenOnlyResponse(token));
+    }
+
+    public Map<String, Object> getMapFromIoJsonwebtokenClaims(DefaultClaims claims) {
+        Map<String, Object> expectedMap = new HashMap<>();
+        for (Map.Entry<String, Object> entry : claims.entrySet()) {
+            expectedMap.put(entry.getKey(), entry.getValue());
+        }
+        return expectedMap;
     }
 }
